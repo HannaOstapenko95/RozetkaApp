@@ -188,7 +188,6 @@ namespace Rozetka
         }
         private static void SaveProductsInDB(List<Mobile> mobileEntities, DB db)
         {
-
             using (db)
             {
                 if (!db.Mobiles.Any())
@@ -201,16 +200,5 @@ namespace Rozetka
                 }
             }
         }
-        //public static void DeleteDataFromDB(DB db)
-        //    {
-        //       // var db = new DB();
-        //       // db.Database.Log = Console.WriteLine;
-        //            var dep = db.Mobiles.Where(d => d.Price < 10000).First();
-        //            db.Mobiles.Remove(dep);
-        //            db.SaveChanges();
-
-        //            Console.WriteLine("Mobile {0} ({1}) is Deleted ", dep.Name, dep.Price);
-        //            Console.ReadKey();
-        //    }
     }
 }

@@ -4,7 +4,6 @@
     {
         public Mobile()
         {
-
         }
         public Mobile(string name, int price, int popularity, string numberOfReviews, string productlink)
         {

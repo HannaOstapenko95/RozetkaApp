@@ -14,7 +14,6 @@ namespace ProductsAnalysisWeb.Controllers
     {
         public IActionResult Home()
         {
-
             return View();
         }
         public IActionResult Shop()
@@ -36,7 +35,6 @@ namespace ProductsAnalysisWeb.Controllers
              n = Start.ExtractProductsFromeXML();
             }
             else n = Start.StartApplication();
-
             return View(n);
         }
     }

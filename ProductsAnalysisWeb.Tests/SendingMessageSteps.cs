@@ -25,7 +25,6 @@ namespace ProductsAnalysisWeb.Tests
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
-            //_driver.Navigate().GoToUrl("http://localhost:5001/Contact");
             _contactPage = ContactPage.NavigateTo(_driver);
         }
 

@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rozetka;
 using ProductsAnalysisWeb.Data;
-
 namespace ProductsAnalysisWeb
 {
     public class Startup
