@@ -36,12 +36,6 @@ namespace Rozetka
                 ShowProductsOnConsole(mobileEntities);
                 var doc = new XDocument();
                 var docToRemove = SaveExtractedProductsInXML(mobileEntities, doc);
-                //ExtractProductsFromeXML();
-                //DeleteXML(docToRemove);
-                //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DB>());
-                //var db = new DB();
-                //SaveProductsInDB(mobileEntities, db);
-                //DeleteDataFromDB(db);
                 return mobileEntities;
             }
         }
