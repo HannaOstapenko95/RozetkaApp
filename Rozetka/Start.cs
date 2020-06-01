@@ -32,16 +32,10 @@ namespace Rozetka
                 InitializeElements(driver);
                 SortByPopularity(driver);
                 ExpandToViewAllProducts(driver);
-                List<Mobile> mobileEntities = PopulateListWithProduct(driver);
+                var mobileEntities = PopulateListWithProduct(driver);
                 ShowProductsOnConsole(mobileEntities);
                 var doc = new XDocument();
                 var docToRemove = SaveExtractedProductsInXML(mobileEntities, doc);
-                //ExtractProductsFromeXML();
-                //DeleteXML(docToRemove);
-                //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DB>());
-                //var db = new DB();
-                //SaveProductsInDB(mobileEntities, db);
-                //DeleteDataFromDB(db);
                 return mobileEntities;
             }
         }
