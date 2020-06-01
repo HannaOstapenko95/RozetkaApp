@@ -1,0 +1,45 @@
+﻿@page
+
+@model ProductsAnalysisWeb.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="text-center">
+    <h1 class="display-4">Rozetka Data</h1>
+</div>
+<div class="col-md-6">
+    <partial name="MobileWidget" model="Model.MobileList" />
+</div>
+<div class="col-md-6">
+    @await Component.InvokeAsync("PopularMobiles", new { count = 2 })
+</div>
+
+<div class="w3-container">
+    <table class="w3-table-all w3-hoverable">
+        <thead>
+            <tr class="w3-light-grey">
+                <th>№:</th>
+                <th>Name:</th>
+                <th>Price:</th>
+                <th>Popularity:</th>
+                <th>Reviews:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+                foreach (var item in Model.MobileList)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.Popularity</td>
+                        <td>@item.NumberOfReviews</td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>

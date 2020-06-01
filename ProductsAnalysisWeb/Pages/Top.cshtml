@@ -1,0 +1,16 @@
+﻿@page
+@model ProductsAnalysisWeb.Pages.TopModel
+
+@{
+    ViewData["Title"] = "Top";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <partial name="MobileWidget" model="Model.mbls" />
+        </div>
+        <div class="col-md-6">
+            @await Component.InvokeAsync("PopularMobiles", new { count = 3 })
+        </div>
+    </div>
+</div>

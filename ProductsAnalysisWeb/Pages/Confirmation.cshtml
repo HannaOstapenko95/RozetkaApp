@@ -1,0 +1,17 @@
+﻿@page
+@model ProductsAnalysisWeb.Pages.ConfirmationModel
+@{
+}
+<div class="container contact-container">
+    <h1 class="mt-4 mb-3">
+        Thank you!
+        <small>It is great to hear from you!</small>
+    </h1>
+    <br />
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <h3 id="confirmationMessage">@Model.Message</h3>
+    }
+    <br />
+    <p>Contact us if you have any other questions: 093-21-70-945</p>
+</div>

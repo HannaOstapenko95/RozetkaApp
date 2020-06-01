@@ -1,0 +1,73 @@
+﻿@page
+@model ContactModel
+@{
+    ViewData["Title"] = "Contact";
+}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Contact us!</h1>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert alert-success">@Model.Message</div>
+        }
+
+        <div class="row">
+            <div class="col-md-8 mb-4">
+                <p>If you have a question, please contact us!</p>
+                <br />
+                <form asp-page="Contact" method="post" name="sentMessage" id="contactForm">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label asp-for="Contact.Name">Name:</label>
+                            <input id="contactName" asp-for="Contact.Name" class="form-control">
+                            <span style="color: red" asp-validation-for="Contact.Name">  </span>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label asp-for="Contact.Phone">Phone:</label>
+                            <input id="contactPhone" asp-for="Contact.Phone" class="form-control">
+                            <span style="color: red" asp-validation-for="Contact.Phone">  </span>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label asp-for="Contact.Email">Email:</label>
+                            <input id="contactEmail" asp-for="Contact.Email" class="form-control">
+                            <span style="color: red" asp-validation-for="Contact.Email">  </span>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label asp-for="Contact.Message">Message:</label>
+                            <textarea id="contactMessage" asp-for="Contact.Message" rows="10" cols="100" class="form-control"></textarea>
+                            <span style="color: red" asp-validation-for="Contact.Message">  </span>
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <button id="sendMessageButton" type="submit" class="btn btn-success" id="sendMessageButton">Send Message!</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h3>Keep in Touch</h3>
+                    <p>Sign up for our mailing list.</p>
+                    <form asp-page-handler="Subscribe">
+                        <div class="control-group form-group">
+                            <input name="adress" type="text" class="form-control" placeholder="Email" />
+                        </div>
+                        <div class="control-group form-group">
+                            <input type="submit" class="btn btn-success" value="Join" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

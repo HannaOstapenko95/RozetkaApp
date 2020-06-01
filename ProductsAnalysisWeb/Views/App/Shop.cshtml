@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Mobile>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/wiredbrain.css" />
+<div class="container">
+    <br /><br />
+    <h1 style="text-align:center; padding-bottom:5px">E-Shop 'Rozetka'</h1>
+    <div class="row">
+
+        @foreach (var item in Model.ToList())
+        {
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <img src="https://www.powerplanetonline.com/cdnassets/cubot_x19_4gb64gb_01_m.jpg" alt="Error">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a class="color-main">@item.Name</a>
+                        </h3>
+                        <h4 class="card-text">Price: @item.Price UAH</h4>
+                        <h5 class="card-text">Reviews: @item.NumberOfReviews</h5>
+                        <h5 class="card-text">Popularity rate: @item.Popularity </h5>
+                    </div>
+                    <div class="card-footer">
+                        <a href="@item.ProductLink" class="btn btn-success w-100" target="_blank">Open in Rozetka</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+
+

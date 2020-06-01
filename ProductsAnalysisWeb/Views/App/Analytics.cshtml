@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Mobile>
+
+
+<script>
+    $(document).ready(function () {
+        $("#Details").click(function () {
+            $(".row").slideToogle();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<div class="container">
+    <br /><br />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <div class="row">
+        <div ng-app="">
+            <div class="col-md-12">
+                <h3>Search criteria:{{search}}</h3>
+                <input style="width: 400px" class="form-control" id="myInput" type="text" ng-model="search" placeholder="Search..">
+            </div>
+        </div>
+    </div>
+    </br>
+    <button type="button" class="btn btn-success btn-block" id="Details" data-toggle="collapse" data-target="#demo">Calculation Details</button>
+    <div class="collapse" id="demo">
+        <table class="table table-bordered">
+            <tr>
+
+                <td>
+                    Number of mobile phones for analysis:
+                    @Model.Count()
+                </td>
+
+                <td data-toggle="tooltip" title="The maximum price among all mobile phones">
+                    Maximun price:
+                    @{ 
+                        int maximum = Model.ToList().Select(x => x.Price).Max();
+                    }@maximum
+                </td>
+
+                <td data-toggle="tooltip" title="The lowest price among all mobile phones">
+                    Minimun price:
+                    @{ 
+                        int minimun = Model.ToList().Select(x => x.Price).Min();
+                    }@minimun
+                </td>
+
+                <td data-toggle="tooltip" title="The average price among all mobile phones">
+                    Average price:
+                    @{ int avg = 0;
+                        int sum = 0;
+                        for (int j = 1; j < Model.ToList().Count; j++)
+                        {
+                            sum += Model.ToList()[j].Price;
+                        }
+                        avg = sum / Model.ToList().Count;
+                    }@avg
+                </td>
+
+                <script>
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>
+                <div class="col">
+                    <td data-toggle="tooltip" title="The value separating the higher half from the lower half of prices on mobiles">
+                        Median price:
+                        @{ if (Model.ToList().Count == 0)
+                                throw new ArgumentException("Маccив не может быть пустым");
+                            int[] arr = new int[Model.ToList().Count];
+                            for (int j = 0; j < Model.ToList().Count; j++)
+                            {
+                                arr[j] = Model.ToList()[j].Price;
+                            }
+                            int[] copyArr = (int[])arr.Clone();
+                            Array.Sort(copyArr);
+                            int median = copyArr[copyArr.Length / 2];
+                        }@median
+                    </td>
+                </div>
+            </tr>
+        </table>
+    </div>
+    <button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#tbl">Show Table</button>
+    <table id="tbl" class="table table-hover collapse table-bordered">
+        <thead>
+            <tr>
+                <th>№:</th>
+                <th>Name:</th>
+                <th>Price:</th>
+                <th>Popularity:</th>
+                <th>Reviews:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 1;
+                foreach (var item in Model.ToList())
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td><a href="@item.ProductLink" target="_blank"> @item.Name </a></td>
+                        <td>@item.Price</td>
+                        <td>@item.Popularity</td>
+                        <td>@item.NumberOfReviews</td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@section FooterSecond {
+    <p class="m-1 text-white">Additional Info</p>
+    <p class="m-1 text-white">(footer section)</p>
+}
+
