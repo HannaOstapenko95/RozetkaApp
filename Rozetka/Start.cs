@@ -32,11 +32,11 @@ namespace Rozetka
                 InitializeElements(driver);
                 SortByPopularity(driver);
                 ExpandToViewAllProducts(driver);
-                List<Mobile> mobileEntities = PopulateListWithProduct(driver);
-                ShowProductsOnConsole(mobileEntities);
-                var doc = new XDocument();
-                var docToRemove = SaveExtractedProductsInXML(mobileEntities, doc);
-                return mobileEntities;
+                List<Mobile> mobilePhones = PopulateListWithProduct(driver);
+                ShowProductsOnConsole(mobilePhones);
+                XDocument doc = new XDocument();
+                SaveProducts(mobilePhones, doc);
+                return mobilePhones;
             }
         }
         private static void NavigateToProducts(IWebDriver driver)
