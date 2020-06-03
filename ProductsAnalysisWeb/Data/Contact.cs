@@ -10,6 +10,7 @@ namespace ProductsAnalysisWeb.Data
     {
         [Required]
         public string Name { get; set; }
+
         [Phone]
         [Required]
         public string Phone { get; set; }

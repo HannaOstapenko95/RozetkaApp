@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+
 namespace ProductsAnalysisWeb.Service
 {
     public static class ContactService
