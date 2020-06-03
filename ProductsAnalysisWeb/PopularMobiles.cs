@@ -11,7 +11,7 @@ namespace ProductsAnalysisWeb
     {
         public async Task<IViewComponentResult> InvokeAsync(int count)
         {
-            List<Mobile> mbls = Start.ExtractProductsFromeXML();
+            List<Mobile> mbls = Start.FromeXML();
             return View(mbls.Take(count));
         }
     }

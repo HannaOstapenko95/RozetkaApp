@@ -6,13 +6,13 @@
         {
 
         }
-        public Mobile(string name, int price, int popularity, string numberOfReviews, string productlink)
+        public Mobile(string name, double price, int rating, string reviews, string descriptionlink)
         {
             Name = name;
             Price = price;
-            Popularity = popularity;
-            NumberOfReviews = numberOfReviews;
-            ProductLink = productlink;
+            Rating = rating;
+            Reviews = reviews;
+            DescriptionUrl = descriptionlink;
         }
     }
 }

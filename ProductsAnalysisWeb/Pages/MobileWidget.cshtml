@@ -8,16 +8,16 @@
         <h1>Most Expensive Phones</h1>
         <h2>Total count: @Model.Count</h2>
         @{
-            int maximum = Model.ToList().Select(x => x.Price).Max();
+            double maximum = Model.ToList().Select(x => x.Price).Max();
             var query = Model.ToList().Where(x => x.Price == maximum);
             foreach (var item in query)
             {
                 <div class="description">
                     <h3>@item.Name</h3>
                     <h4 style="color:darkslateblue">Price: @item.Price</h4>
-                    <h5>Reviews: @item.NumberOfReviews</h5>
+                    <h5>Reviews: @item.Reviews</h5>
                     <div class="card-footer">
-                        <a href="@item.ProductLink" class="btn btn-success w-100" target="_blank">Open in Rozetka</a>
+                        <a href="@item.DescriptionUrl" class="btn btn-success w-100" target="_blank">Open in Rozetka</a>
                     </div>
                 </div>
                 <hr/>

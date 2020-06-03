@@ -32,17 +32,11 @@ namespace Rozetka
                 InitializeElements(driver);
                 SortByPopularity(driver);
                 ExpandToViewAllProducts(driver);
-                List<Mobile> mobileEntities = PopulateListWithProduct(driver);
-                ShowProductsOnConsole(mobileEntities);
-                var doc = new XDocument();
-                var docToRemove = SaveExtractedProductsInXML(mobileEntities, doc);
-                //ExtractProductsFromeXML();
-                //DeleteXML(docToRemove);
-                //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DB>());
-                //var db = new DB();
-                //SaveProductsInDB(mobileEntities, db);
-                //DeleteDataFromDB(db);
-                return mobileEntities;
+                List<Mobile> mobilePhones = PopulateListWithProduct(driver);
+                ShowProductsOnConsole(mobilePhones);
+                XDocument doc = new XDocument();
+                SaveProducts(mobilePhones, doc);
+                return mobilePhones;
             }
         }
         private static void NavigateToProducts(IWebDriver driver)
@@ -107,15 +101,15 @@ namespace Rozetka
                 Mobile m = new Mobile();
                 m.Name = mobileNamesElements[i].Text;
                 m.Price = Convert.ToInt32(mobilePricesElements[i].Text.Replace(" ", ""));
-                m.Popularity = popularity;
-                m.NumberOfReviews = reviewsInTextElements[i].Text;
-                m.ProductLink = link;
+                m.Rating = popularity;
+                m.Reviews = reviewsInTextElements[i].Text;
+                m.DescriptionUrl = link;
                 popularity--;
                 mobileEntities.Add(m);
             }
             return mobileEntities;
         }
-        private static XDocument SaveExtractedProductsInXML(List<Mobile> mobileEntities, XDocument doc)
+        private static void SaveProducts(List<Mobile> mobileEntities, XDocument doc)
         {
   
             var records = new XElement("Mobile");
@@ -124,9 +118,9 @@ namespace Rozetka
                 var mobile = new XElement("Mobile");
                 var name = new XElement("Title", item.Name);
                 var price = new XAttribute("Price", item.Price);
-                var reviews = new XAttribute("Reviews", item.NumberOfReviews);
-                var pop = new XAttribute("Popularity", item.Popularity);
-                var link = new XAttribute("Link", item.ProductLink);
+                var reviews = new XAttribute("Reviews", item.Reviews);
+                var pop = new XAttribute("Popularity", item.Rating);
+                var link = new XAttribute("Link", item.DescriptionUrl);
                 mobile.Add(name);
                 mobile.Add(price);
                 mobile.Add(reviews);
@@ -136,16 +130,15 @@ namespace Rozetka
             } 
             doc.Add(records);
             doc.Save("DataSource/RozetkaData/Mobiles.xml");
-            return doc;
         }
-        public static List<Mobile> ExtractProductsFromeXML()
+        public static List<Mobile> FromeXML()
         {
             List<Mobile> mobiles = new List<Mobile>();
             
             XmlDocument doc1 = new XmlDocument();
             doc1.Load("DataSource/RozetkaData/Mobiles.xml");
             XmlNode node = doc1.DocumentElement.SelectSingleNode("/Mobile/Title");
-            int price;
+            double price;
             int popularity;
             foreach (XmlNode node1 in doc1.DocumentElement.ChildNodes)
             {
@@ -153,7 +146,7 @@ namespace Rozetka
                 string name = node1.InnerText; 
                 mobile.Name = name;
 
-                bool priceParse = Int32.TryParse(node1.Attributes["Price"]?.InnerText, out price);
+                bool priceParse = Double.TryParse(node1.Attributes["Price"]?.InnerText, out price);
                 if (priceParse == true)
                 { 
                     Console.WriteLine("Преобразование прошло успешно");
@@ -163,18 +156,18 @@ namespace Rozetka
                     Console.WriteLine("Преобразование завершилось неудачно");
 
                 string reviews = node1.Attributes["Reviews"]?.InnerText;
-                mobile.NumberOfReviews = reviews;
+                mobile.Reviews = reviews;
 
                 bool popularityParse = Int32.TryParse(node1.Attributes["Popularity"]?.InnerText, out popularity);
                 if (popularityParse == true)
                 {
                     Console.WriteLine("Преобразование прошло успешно");
-                    mobile.Popularity = popularity;
+                    mobile.Rating = popularity;
                 }
                 else
                     Console.WriteLine("Преобразование завершилось неудачно");
                 string link = node1.Attributes["Link"]?.InnerText;
-                mobile.ProductLink = link;
+                mobile.DescriptionUrl = link;
                 mobiles.Add(mobile);
             }
             return mobiles;
@@ -188,8 +181,8 @@ namespace Rozetka
             for (int i = 1; i < mobileEntities.Count; i++)
             {
                 Console.WriteLine("N: " + i + " \t" + mobileEntities[i].Name + "\t" + 
-                    mobileEntities[i].Price + "\tPopularity: " + mobileEntities[i].Popularity + "\n"
-                    + mobileEntities[i].NumberOfReviews + "\n" + "Link:" + mobileEntities[i].ProductLink + "\n");
+                    mobileEntities[i].Price + "\tPopularity: " + mobileEntities[i].Rating + "\n"
+                    + mobileEntities[i].Reviews + "\n" + "Link:" + mobileEntities[i].DescriptionUrl + "\n");
             }
         }
         private static void SaveProductsInDB(List<Mobile> mobileEntities, DB db)
