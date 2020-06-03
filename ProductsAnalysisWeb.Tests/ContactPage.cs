@@ -13,10 +13,6 @@ namespace ProductsAnalysisWeb.Tests
         private readonly IWebDriver _driver;
         private const string PageUri = @"http://localhost:5001/Contact";
 
-        //[FindsBy(How = How.CssSelector, Using = "div.validation-summary-errors ul li")]
-        //private IWebElement _errorText;
-
-
         [FindsBy(How = How.Id, Using = "contactName")]
         private IWebElement _contactName;
 

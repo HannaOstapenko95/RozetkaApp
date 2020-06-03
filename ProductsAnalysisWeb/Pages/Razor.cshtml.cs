@@ -21,7 +21,7 @@ namespace ProductsAnalysisWeb.Pages
         public string ProductLink { get; set; }
         public string Message { get; set; }
 
-        List<Mobile> mbls = Start.ExtractProductsFromeXML();
+        List<Mobile> mbls = Start.FromeXML();
         
         public void OnGet()
         {
@@ -32,9 +32,9 @@ namespace ProductsAnalysisWeb.Pages
                 mob.ID = mbls[i].ID;
                 mob.Name= mbls[i].Name;
                 mob.Price = mbls[i].Price;
-                mob.Popularity = mbls[i].Popularity;
-                mob.NumberOfReviews = mbls[i].NumberOfReviews;
-                mob.ProductLink = mbls[i].ProductLink;
+                mob.Rating = mbls[i].Rating;
+                mob.Reviews = mbls[i].Reviews;
+                mob.DescriptionUrl = mbls[i].DescriptionUrl;
                 MobileList.Add(mob); 
             }
         }

@@ -10,9 +10,9 @@ namespace Rozetka
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
-        public int Popularity { get; set; }
-        public string NumberOfReviews { get; set; }
-        public string ProductLink { get; set; }
+        public double Price { get; set; }
+        public int Rating { get; set; }
+        public string Reviews { get; set; }
+        public string DescriptionUrl { get; set; }
     }
 }

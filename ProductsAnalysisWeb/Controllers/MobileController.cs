@@ -19,25 +19,25 @@ namespace ProductsAnalysisWeb.Controllers
         }
         public IActionResult Shop()
         {
-            List<Mobile> n = new List<Mobile>();
+            List<Mobile> mobilesList = new List<Mobile>();
             if (Start.CheckXmlExists())
             {
-                n = Start.ExtractProductsFromeXML();
+                mobilesList = Start.FromeXML();
             }
-            else n = Start.StartApplication();
-            return View(n);
+            else mobilesList = Start.StartApplication();
+            return View(mobilesList);
         }
         public IActionResult Analytics()
         {
             ViewBag.Title = "Analytics";
-            List<Mobile> n = new List<Mobile>();
+            List<Mobile> mobilesList = new List<Mobile>();
             if (Start.CheckXmlExists())
             {
-             n = Start.ExtractProductsFromeXML();
+             mobilesList = Start.FromeXML();
             }
-            else n = Start.StartApplication();
+            else mobilesList = Start.StartApplication();
 
-            return View(n);
+            return View(mobilesList);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ProductsAnalysisWeb.Pages
         public List<Mobile> mbls { get; set; }
         public void OnGet()
         {
-            mbls = Start.ExtractProductsFromeXML();
+            mbls = Start.FromeXML();
         }
     }
 }

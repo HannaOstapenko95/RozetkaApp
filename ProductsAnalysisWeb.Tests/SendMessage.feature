@@ -53,7 +53,6 @@ Scenario: Send valid message
 	When I press submit
 	Then I should see "The Email field is required." text on the contact screen
 
-
 @mytag
 	Scenario: Send message with empty message
 	Given I am on the Contact page
